@@ -32,8 +32,6 @@ with open('file.bin','wb') as file:
     while opt=='y':
         
         try:
-            
-        
             dick= input('What do you want to write? ')  
             
             example_list.append(dick)
@@ -42,24 +40,23 @@ with open('file.bin','wb') as file:
             opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no')))        
             
             acceptedResponses=['y','n']
-            
             if opt not in acceptedResponses:
                 raise UnacceptedValueError("Please enter {}/{}".format('y','n'))
         
         except UnacceptedValueError as e:
             print(e)
-            opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no')))        
+            opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no'))) 
+            
+        except Exception as e:
+            print(e)
         
     pickle.dump(example_dict,file)
-           
-        
+                  
     file.close()
            
-
+#binary read(to be commented)
 with open('file.bin','rb') as file:
-    
-    
-    
+        
     try:
         print('Records are:' )
         
