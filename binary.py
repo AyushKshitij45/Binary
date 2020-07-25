@@ -22,7 +22,16 @@ class UnacceptedValueError(Exception):
     
     def __str__(self):
         return repr(self.data)
+    
 
+class NoValueError(Exception): 
+
+    def __init__(self):
+        pass
+    
+    def __str__(self):
+        pass    
+"""
 #Binary write list/dictionary
 with open('file.bin','wb') as file:
     
@@ -32,11 +41,10 @@ with open('file.bin','wb') as file:
     while opt=='y':
         
         try:
-            dick= input('What do you want to write? ')  
+            dicty= input('What do you want to write? ')  
             
-            example_list.append(dick)
+            example_list.append(dicty)
             example_dict= dict(enumerate(example_list))
-            print(example_dict)
             opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no')))        
             
             acceptedResponses=['y','n']
@@ -53,20 +61,76 @@ with open('file.bin','wb') as file:
     pickle.dump(example_dict,file)
                   
     file.close()
+"""    
+"""    
+#Binary write list/dictionary
+with open('file.bin','wb') as file:
+    
+    
+    
+    opt='y'
+    while opt=='y':
+        
+        try:
+            Name= input('Name of student: ')
+            rollNo= input("Student's Roll No.: ")
+
+            example_dict['Name:']=Name            
+            example_dict['Roll No.:']=rollNo
+        
+            
+#            example_dict= dict(enumerate(example_list))
+            opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no')))        
+            
+            pickle.dump(example_dict,file)
+            
+            acceptedResponses=['y','n']
+            if opt not in acceptedResponses:
+                raise UnacceptedValueError("Please enter {}/{}".format('y','n'))
+                        
+        except UnacceptedValueError as e:
+            print(e)
+            opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no'))) 
+            
+        except Exception as e:
+            print(e)
+        
+    
+                  
+    file.close()
+"""    
            
 #binary read(to be commented)
 with open('file.bin','rb') as file:
-        
+    
+    i=0    
     try:
-        print('Records are:' )
+        searchedName=input('Enter name of the student (Press "Enter" to view the full file) : ')
+        
         
         while True:
             example_dict=pickle.load(file)
-            print(example_dict)
             
+            if searchedName == '':
+                print('Records: ' )
+                print(example_dict)
+                i=1
+            elif example_dict['Name:'] == searchedName:
+                print('Records: ' )
+                print(example_dict)
+                i=1
     except EOFError:
         file.close()
         
     except Exception as e:
         print(e)
+    
+    if i==0:
+        print('No one by that name')
+        
+                    
+#    except NoValueError:
+#        print('No one by that name')            
+            
+
      
