@@ -10,7 +10,7 @@ them as 0,1,2...
 
 Second Example(Very Important Records):
 
-This is another one of many ways that a user might use binary file for. It's
+This is another one of many ways in which a user might use binary file. It's
 similar to a database of student details(we are using only name and roll no as
 an example for simplicity).
 	eg(expected output):{Name: student1, Roll no.:STD1}
