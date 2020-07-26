@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jul 22 23:17:02 2020
+Project on binary file writing.
 
-@author: admin
+@authors: Ayush Kshitij
+          Medhansh Jain
+          Vatsal Kapoor
 """
 
 import pickle
@@ -47,13 +49,31 @@ with open('file.bin','wb') as file:
             # While dealing with error iterate.
             opt=str(input('''Do you want to add more items?, ({} for {}, {} for {}): '''.format('y','yes','n','no'))) 
         
-        # Handling all other exceptions.
+        # Handling all general exceptions.
         except Exception as e:
             print(e)
         
     pickle.dump(example_dict,file) # Adding example_dict to file
                   
     file.close()
+    
+    
+# Opening the file
+with open('file.bin','rb') as file:
+    
+    try:         
+        while True:
+            # Loading the file.
+            example_dict=pickle.load(file)
+            print(example_dict)
+                
+    # Handling End of file error after reading is complete.
+    except EOFError:
+        file.close()
+    
+    # Handling all other exceptions.    
+    except Exception as e:
+        print(e)
     
 
 # Binary write dictionary(2nd approach).
@@ -127,9 +147,13 @@ with open('file.bin','rb') as file:
     
     # If the requested name is not present in the file.
     if i==0:
-        print('No one by that name')
+        print('No one by that name.')
         
-        
+
+'''---------------------------------------------------------------------------------------------------------'''
+
+
+'''        
 # ONE MORE EXAMPLE.
 THE_IMAGE=open('THE IMAGE WITH TEXT.PNG','rb')
 
@@ -138,4 +162,5 @@ with open('AN IMAGE.PNG','wb') as thing:
     for i in THE_IMAGE:
         thing.write(i)
 
-    file.close()        
+    thing.close()
+'''        
